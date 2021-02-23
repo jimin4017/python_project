@@ -1,7 +1,11 @@
 import pygame
+###################################################################################
+#기본 초기화
+
 
 pygame.init() ## 초기화
 
+# 화면 크기 설정
 screen_width = 480 #가로크기
 screen_high = 640 # 세로크기
 screen = pygame.display.set_mode((screen_width,screen_high))
@@ -15,6 +19,12 @@ background =pygame.image.load("C:/Users/정지민/Desktop/python_project/python_
 # FPS
 
 clock = pygame.time.Clock() ## 게임프레임
+
+################################################################################################################################
+# 1. 사용자 게임 초기화 (배경 화면 ,게임 이미지 , 좌표)
+
+
+
 
 
 
@@ -35,6 +45,18 @@ enemy_high = enemy_size[1]
 enemy_x_pos = (screen_width/2) - (enemy_width/2)
 enemy_y_pos = (screen_high/2) - enemy_high
 
+
+# 폰트 정의
+
+game_font = pygame.font.Font(None,40)
+
+# 총 시간
+
+total_time = 100
+# 시간 계산
+
+start_ticks = pygame.time.get_ticks()  ## 시작을 받아오는 변수
+
 #  이벤트 루프
 running =True  ## 게임진행 변수
 ### 케릭터 변수
@@ -46,24 +68,27 @@ while running :
 
 
     print("fps:"+str(clock.get_fps()))
+    # 2. 이벤트 처리 (키보드 ,마우스 등)
     for event in pygame.event.get():    ## 이벤트 발생
         
         if event.type == pygame.QUIT:
             running=False 
-        if event.type == pygame.KEYDOWN : # 키가 눌러 졌는지 확인
-            if event.key == pygame.K_LEFT :
-                to_x -= character_speed
-            elif event.key == pygame.K_RIGHT :
-                to_x += character_speed
-            elif event.key == pygame.K_UP :
-                to_y -= character_speed 
-            elif event.key == pygame.K_DOWN :
-                to_y += character_speed 
-        if event.type == pygame.KEYUP  : # 방향키를 때면 멈춤
-            if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT :
-                to_x = 0
-            elif event.key == pygame.K_UP or event.key == pygame.K_DOWN :
-                to_y = 0
+
+        
+        
+    #3. 게임  캐릭터 위치 정의
+
+
+    #4. 충돌 처리
+
+
+
+    #5. 화면에 그리기
+    screen.blit(background,(0,0))    ## 배경 그리기
+    screen.blit(character,(character_x_pos,character_y_pos)) # 케릭터 그리기
+    screen.blit(enemy,(enemy_x_pos,enemy_y_pos))
+
+
 
     character_x_pos  += to_x
     character_y_pos  += to_y
@@ -98,7 +123,6 @@ while running :
         running ==False
 
 
-          
     
 
 
@@ -106,9 +130,19 @@ while running :
 
     #screen.fill((0,0,255))  rgb 값으로 배경 넣기
 
-    screen.blit(background,(0,0))    ## 배경 그리기
-    screen.blit(character,(character_x_pos,character_y_pos)) # 케릭터 그리기
-    screen.blit(enemy,(enemy_x_pos,enemy_y_pos))
+   
+
+    # 경과 시간 넣기  반드 스크린 뒤에 넣어야한다
+
+    elapsed_time =(pygame.time.get_ticks()-start_ticks) /1000
+
+    timer = game_font.render(str(int(total_time - elapsed_time)),True,(255,255,255))
+    #  render(시간 , True , 글자 색상 순서 로)
+
+    if total_time - elapsed_time <=0 :
+        running =False
+          
+    screen.blit(timer,(10,10))
     pygame.display.update() # 게임화면 다시그리기 계속 호출 되어야 하는거
 
 

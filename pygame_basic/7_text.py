@@ -35,6 +35,22 @@ enemy_high = enemy_size[1]
 enemy_x_pos = (screen_width/2) - (enemy_width/2)
 enemy_y_pos = (screen_high/2) - enemy_high
 
+
+# 폰트 정의
+
+game_font = pygame.font.Font(None,40)
+
+# 총 시간
+
+total_time = 100
+# 시간 계산
+
+start_ticks = pygame.time.get_ticks()  ## 시작을 받아오는 변수
+
+
+
+
+
 #  이벤트 루프
 running =True  ## 게임진행 변수
 ### 케릭터 변수
@@ -89,7 +105,8 @@ while running :
     enemy_rect = enemy.get_rect()
     enemy_rect.left = enemy_x_pos
     enemy_rect.top = enemy_y_pos
-    
+
+
     #충돌 체크
 
     if character_rect.colliderect(enemy_rect) :
@@ -98,7 +115,6 @@ while running :
         running ==False
 
 
-          
     
 
 
@@ -109,6 +125,19 @@ while running :
     screen.blit(background,(0,0))    ## 배경 그리기
     screen.blit(character,(character_x_pos,character_y_pos)) # 케릭터 그리기
     screen.blit(enemy,(enemy_x_pos,enemy_y_pos))
+
+
+    # 경과 시간 넣기  반드 스크린 뒤에 넣어야한다
+
+    elapsed_time =(pygame.time.get_ticks()-start_ticks) /1000
+
+    timer = game_font.render(str(int(total_time - elapsed_time)),True,(255,255,255))
+    #  render(시간 , True , 글자 색상 순서 로)
+
+    if total_time - elapsed_time <=0 :
+        running =False
+          
+    screen.blit(timer,(10,10))
     pygame.display.update() # 게임화면 다시그리기 계속 호출 되어야 하는거
 
 
