@@ -1,3 +1,18 @@
+# 프로젝트 목표
+# 게임조건 
+# 1.캐릭터는 화면 아래 위치 , 좌우로만 이동
+# 2.큰 공 1개가 바운스
+# 3.무기에 닿으면 공은 작은 크기 2개로 분할 ,가장 작은 크기의 공은 사라짐
+# 4.모든 공을 없애면 게임 종료
+# 5.캐릭터는 공에 닿으면 게임  , 시간제한  --> 게임종료
+# 
+# 게임 이미지 배
+# 1. 배경 640 x480 black
+# 2. 무대  640*50
+# 3. 캐릭터 60*30
+# 4. 무기 20 *430
+# 5. 공 160*160
+
 import pygame
 import os
 ###################################################################################
@@ -6,16 +21,14 @@ import os
 
 pygame.init() ## 초기화
 
-
-
 # 화면 크기 설정
-screen_width = 640 #가로크기
-screen_high = 480 # 세로크기
+screen_width = 480 #가로크기
+screen_high = 640 # 세로크기
 screen = pygame.display.set_mode((screen_width,screen_high))
 
 # 화면 타이틀 설정
 
-pygame.display.set_caption("jimin_game") # 게임 이름
+pygame.display.set_caption("jimin's game") # 게임 이름
 
 background =pygame.image.load("C:/Users/정지민/Desktop/python_project/python_project/pygame_basic/background.png")  #이미지 로드
 
@@ -25,14 +38,18 @@ clock = pygame.time.Clock() ## 게임프레임
 
 ################################################################################################################################
 # 1. 사용자 게임 초기화 (배경 화면 ,게임 이미지 , 좌표)
-current_path = os.path.dirname(__file__) # 현재 파일의 위치변환
-image_path = os.path.join(current_path,"image_")
 
+current_path = os.path.dirname(__file__) # 현재파일의 위치 반환
+image_path = os.path.join(current_path."image_")  #image_ 폴더의 위치 반환
 
-#배경만들기
-background = pygame.image.load(os.path.join(image_path,"back_ground.png"))
+# 배경 만들기
+background_game= pygame.image.load(os.path.join,"back_ground.png")
 
-
+#스테이지 만들기
+stage = pygame.image.load(os.path.join,"stage.png")
+stage_size = stage.get_rect().size
+stage_heigh =stage_size[0]
+stage_heigh =stage_size[1]
 
 
 #캐릭터 불러오기
@@ -59,7 +76,7 @@ game_font = pygame.font.Font(None,40)
 
 # 총 시간
 
-total_time = 100
+total_time = 1000
 # 시간 계산
 
 start_ticks = pygame.time.get_ticks()  ## 시작을 받아오는 변수
@@ -71,7 +88,7 @@ to_x = 0  ## 케릭터 위치 변수
 to_y = 0
 character_speed = 10 # 캐릭터 속도  ex) character_speed * frame(clock)
 while running :
-    dt = clock.tick(100) #### 게임에 프레임 넣기
+    dt = clock.tick(30) #### 게임에 프레임 넣기
 
 
     print("fps:"+str(clock.get_fps()))
@@ -92,6 +109,7 @@ while running :
 
     #5. 화면에 그리기
     screen.blit(background,(0,0))    ## 배경 그리기
+    screen.blit(stage,)
     screen.blit(character,(character_x_pos,character_y_pos)) # 케릭터 그리기
     screen.blit(enemy,(enemy_x_pos,enemy_y_pos))
 
@@ -127,7 +145,7 @@ while running :
     if character_rect.colliderect(enemy_rect) :
         print("오류가 났어요")
 
-        running ==False
+      
 
 
     
