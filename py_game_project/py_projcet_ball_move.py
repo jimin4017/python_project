@@ -11,6 +11,14 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 
 # 화면 타이틀 설정
 pygame.display.set_caption("Nado Pang")
+# 최초 발생하는 큰 공 추가
+balls.append({
+    "pos_x" : 50, # 공의 x 좌표
+    "pos_y" : 50, # 공의 y 좌표
+    "img_idx" : 0, # 공의 이미지 인덱스
+    "to_x": 3, # x축 이동방향, -3 이면 왼쪽으로, 3 이면 오른쪽으로
+    "to_y": -6, # y축 이동방향,
+    "init_spd_y": ball_speed_y[0]})# y 최초 속도
 
 # FPS
 clock = pygame.time.Clock()
@@ -53,6 +61,15 @@ weapons = []
 # 무기 이동 속도
 weapon_speed = 10
 
+#공 만들기
+
+ball_images = [ 
+    pygame.image.load(os.path.join(image_path,"ballon1.png")),
+    pygame.image.load(os.path.join(image_path,"ballon2.png")),
+    pygame.image.load(os.path.join(image_path,"ballon3.png")),
+    pygame.image.load(os.path.join(image_path,"ballon4.png"))
+]
+
 running = True
 while running:
     dt = clock.tick(30)
@@ -94,7 +111,12 @@ while running:
     
     # 공 위치 정의
     for ball_idx, ball_val in enumerate(balls):
-        ball_pos_x = ball[]
+        ball_pos_x = ball_val["pos_x"]
+        ball_pos_y = ball_val["pos_y"]
+        ball_img_idx = ball_val["img_idx"]
+        
+        ball_size = ball_images[ball_img_idx]
+
 
     # 4. 충돌 처리
 

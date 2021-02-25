@@ -1,0 +1,1 @@
+for ball_idx, ball_val in enumerate(balls):
