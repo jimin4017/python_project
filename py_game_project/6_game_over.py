@@ -238,12 +238,16 @@ while running:
     
     for weapon_x_pos, weapon_y_pos in weapons:
         screen.blit(weapon, (weapon_x_pos, weapon_y_pos))
-
+    
     for idx, val in enumerate(balls):
         ball_pos_x = val["pos_x"]
         ball_pos_y = val["pos_y"]
         ball_img_idx = val["img_idx"]
-        screen.blit(ball_images[ball_img_idx], (ball_pos_x, ball_pos_y))
+     # 모든 공을 없앤 경우
+    if len(balls)  == 0 :
+        result = " Mission complete"
+        running = False
+    screen.blit(ball_images[ball_img_idx], (ball_pos_x, ball_pos_y))
     screen.blit(stage, (0, screen_height - stage_height))
     screen.blit(character, (character_x_pos, character_y_pos))   
 
