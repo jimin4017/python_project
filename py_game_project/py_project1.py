@@ -7,8 +7,8 @@ import os
 pygame.init() ## 초기화
 
 # 화면 크기 설정
-screen_width = 480 #가로크기
-screen_high = 640 # 세로크기
+screen_width = 640 #가로크기
+screen_high = 480 # 세로크기
 screen = pygame.display.set_mode((screen_width,screen_high))
 
 # 화면 타이틀 설정

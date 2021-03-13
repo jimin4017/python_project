@@ -19,5 +19,9 @@ btn2.pack()
 btn4 = Button(root,fg="red",bg="yellow",text="버튼4") # fg 버튼 배경 bg 버튼색
 btn4.pack()
 
+
+txt = Text(root,width= 30 ,height=5 )
+txt.pack()
+
 root.mainloop()  ## 계속 루프 돌려 실행
 
