@@ -30,9 +30,9 @@ score = [(1,10,8,5,14,26,12),
 for i in range(0,9) :
     ws.append(score[i])
 
-for i in range(1.9) :
+for i in range(1,9) :
     total_score_row_range = ws[2:i]
-    ws[i] =  "=SUM(A2:G2)"
+     ws[2,i] =  "=SUM(A2:G2)"
 
 
 # ws["H2"] = "=SUM(A2:G2)" # 30
