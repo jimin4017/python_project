@@ -47,7 +47,7 @@ import pyautogui
 
 # 자동화 대상이 바로 보여지지 않는 경우
 # 1. 계속 기다리기
-file_menu_notepad = pyautogui.locateOnScreen("test_fish.png")
+# file_menu_notepad = pyautogui.locateOnScreen("test_fish.png")
 # if file_menu_notepad:
 #     pyautogui.click(file_menu_notepad)
 # else:
